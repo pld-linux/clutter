@@ -12,6 +12,8 @@ BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel
+BuildRequires:	pango-devel
+BuildRequires:	freetype-devel
 BuildRequires:	gtk-doc-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
