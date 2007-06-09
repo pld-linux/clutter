@@ -91,14 +91,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libclutter-0.2.so.0.202.1
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/clutter-0.2
-%{_libdir}/libclutter-0.2.la
-%{_libdir}/libclutter-0.2.so
-%{_pkgconfigdir}/clutter-0.2.pc
+%{_includedir}/%{name}-*
+%{_libdir}/lib*.la
+%{_libdir}/lib*.so
+%{_pkgconfigdir}/*.pc
 
 %files apidocs
 %defattr(644,root,root,755)
