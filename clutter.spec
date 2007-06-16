@@ -1,5 +1,5 @@
-#
 Summary:	Library for rich GUIs
+Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
 Version:	0.2.3
 Release:	1
@@ -7,7 +7,7 @@ License:	GPL v2
 Group:		Applications
 Source0:	http://www.clutter-project.org/sources/clutter/0.2/%{name}-%{version}.tar.gz
 # Source0-md5:	1c6fd7e602d60d7017fac3b23c7b334b
-URL:		http://www.clutter-project.com/
+URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -27,6 +27,17 @@ Clutter uses OpenGL (and soon optionally OpenGL ES) for rendering but
 with an API which hides the underlying GL complexity from the
 developer. The Clutter API is intended to be easy to use, efficient
 and flexible.
+
+%description -l pl.UTF-8
+Clutter to biblioteka o otwartych źródłach do tworzenia szybkich,
+bogatych wizualnie graficznych interfejsów użytkownika. Najbardziej
+oczywistym przykładem potencjalnego zastosowania są aplikacje typu
+centrum multimedialne. Jednak autorzy mają nadzieję, że znajdzie się
+więcej zastosowań.
+
+Clutter wykorzystuje OpenGL (i wkrótce opcjonalnie OpenGL ES) do
+renderowania, ale API ukrywa złożoność warstwy GL przed programistami.
+API biblioteki Clutter ma być łatwe w użyciu, wydajne i elastyczne.
 
 %package devel
 Summary:	Header files for clutter library
