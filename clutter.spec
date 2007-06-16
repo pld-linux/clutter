@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
 Version:	0.2.3
 Release:	1
-License:	GPL v2
+License:	LGPL v2+
 Group:		Applications
 Source0:	http://www.clutter-project.org/sources/clutter/0.2/%{name}-%{version}.tar.gz
 # Source0-md5:	1c6fd7e602d60d7017fac3b23c7b334b
