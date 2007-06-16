@@ -4,17 +4,20 @@ Name:		clutter
 Version:	0.2.3
 Release:	1
 License:	LGPL v2+
-Group:		Applications
+Group:		Libraries
 Source0:	http://www.clutter-project.org/sources/clutter/0.2/%{name}-%{version}.tar.gz
 # Source0-md5:	1c6fd7e602d60d7017fac3b23c7b334b
 URL:		http://www.clutter-project.org/
-BuildRequires:	OpenGL-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	glib2-devel
+BuildRequires:	OpenGL-GLX-devel
+BuildRequires:	autoconf >= 2.53
+BuildRequires:	automake >= 1:1.7
+BuildRequires:	glib2-devel >= 1:2.8
+BuildRequires:	gtk+2-devel >= 1:2.0
+BuildRequires:	gtk-doc >= 1.4
+BuildRequires:	libtool
 BuildRequires:	pango-devel
-BuildRequires:	freetype-devel
-BuildRequires:	gtk-doc-common
+BuildRequires:	pkgconfig
+BuildRequires:	xorg-lib-libX11-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,6 +47,11 @@ Summary:	Header files for clutter library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	OpenGL-GLX-devel
+Requires:	glib2-devel >= 1:2.8
+Requires:	gtk+2-devel >= 1:2.0
+Requires:	pango-devel
+Requires:	xorg-lib-libX11-devel
 
 %description devel
 Header files for clutter library.
@@ -80,11 +88,13 @@ Dokumentacja API clutter.
 
 %build
 %{__gtkdocize}
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
 	--enable-gtk-doc \
+	--enable-static \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
@@ -104,14 +114,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libclutter-*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/%{name}-*
-%{_libdir}/lib*.la
-%{_libdir}/lib*.so
-%{_pkgconfigdir}/*.pc
+%attr(755,root,root) %{_libdir}/libclutter-*.so
+%{_libdir}/libclutter-*.la
+%{_includedir}/clutter-*
+%{_pkgconfigdir}/clutter-*.pc
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libclutter-*.a
 
 %files apidocs
 %defattr(644,root,root,755)
