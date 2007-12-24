@@ -11,13 +11,14 @@ URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	glib2-devel >= 1:2.8
+BuildRequires:	glib2-devel >= 1:2.10
 BuildRequires:	gtk+2-devel >= 1:2.0
-BuildRequires:	gtk-doc >= 1.4
+BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	libtool
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,10 +49,11 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	glib2-devel >= 1:2.8
+Requires:	glib2-devel >= 1:2.10
 Requires:	gtk+2-devel >= 1:2.0
 Requires:	pango-devel
 Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXfixes-devel >= 4
 
 %description devel
 Header files for clutter library.
@@ -114,18 +116,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libclutter-*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libclutter-glx-0.4.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-0.4.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libclutter-*.so
-%{_libdir}/libclutter-*.la
-%{_includedir}/clutter-*
-%{_pkgconfigdir}/clutter-*.pc
+%attr(755,root,root) %{_libdir}/libclutter-glx-0.4.so
+%{_libdir}/libclutter-glx-0.4.la
+%{_includedir}/clutter-0.4
+%{_pkgconfigdir}/clutter-0.4.pc
+%{_pkgconfigdir}/clutter-glx-0.4.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libclutter-*.a
+%{_libdir}/libclutter-glx-0.4.a
 
 %files apidocs
 %defattr(644,root,root,755)
