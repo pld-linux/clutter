@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	0.4.2
+Version:	0.6.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/0.4/%{name}-%{version}.tar.gz
-# Source0-md5:	9f1a2d95dcb6a1f30a09f39bdcc10699
+Source0:	http://www.clutter-project.org/sources/clutter/0.6/%{name}-%{version}.tar.gz
+# Source0-md5:	91caa82277a87b8be43bb0b9fdcbabb3
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.53
@@ -116,20 +116,21 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libclutter-glx-0.4.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-0.4.so.0
+%attr(755,root,root) %{_libdir}/libclutter-glx-0.6.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-0.6.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libclutter-glx-0.4.so
-%{_libdir}/libclutter-glx-0.4.la
-%{_includedir}/clutter-0.4
-%{_pkgconfigdir}/clutter-0.4.pc
-%{_pkgconfigdir}/clutter-glx-0.4.pc
+%attr(755,root,root) %{_libdir}/libclutter-glx-0.6.so
+%{_libdir}/libclutter-glx-0.6.la
+%{_includedir}/clutter-0.6
+%{_pkgconfigdir}/clutter-0.6.pc
+%{_pkgconfigdir}/clutter-glx-0.6.pc
+%{_pkgconfigdir}/clutter-x11-0.6.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libclutter-glx-0.4.a
+%{_libdir}/libclutter-glx-0.6.a
 
 %files apidocs
 %defattr(644,root,root,755)
