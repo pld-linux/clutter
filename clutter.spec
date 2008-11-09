@@ -1,21 +1,21 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	0.6.4
-Release:	2
+Version:	0.8.2
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/0.6/%{name}-%{version}.tar.gz
-# Source0-md5:	d28dec49517475c2ea0de884d7b87268
+Source0:	http://www.clutter-project.org/sources/clutter/0.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	6fd2c0e63d904523a773736cbb45d176
+Patch0:		%{name}-build-fix.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.53
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	glib2-devel >= 1:2.10
 BuildRequires:	gtk+2-devel >= 1:2.0
-BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	libtool
-BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
@@ -51,7 +51,6 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	glib2-devel >= 1:2.10
 Requires:	gtk+2-devel >= 1:2.0
-Requires:	pango-devel
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXfixes-devel >= 4
 
@@ -87,12 +86,14 @@ Dokumentacja API clutter.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gtkdocize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	--enable-gtk-doc \
@@ -116,22 +117,23 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libclutter-glx-0.6.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-0.6.so.0
+%attr(755,root,root) %{_libdir}/libclutter-glx-0.8.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-0.8.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libclutter-glx-0.6.so
-%{_libdir}/libclutter-glx-0.6.la
-%{_includedir}/clutter-0.6
-%{_pkgconfigdir}/clutter-0.6.pc
-%{_pkgconfigdir}/clutter-glx-0.6.pc
-%{_pkgconfigdir}/clutter-x11-0.6.pc
+%attr(755,root,root) %{_libdir}/libclutter-glx-0.8.so
+%{_libdir}/libclutter-glx-0.8.la
+%{_includedir}/clutter-0.8
+%{_pkgconfigdir}/clutter-0.8.pc
+%{_pkgconfigdir}/clutter-glx-0.8.pc
+%{_pkgconfigdir}/clutter-x11-0.8.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libclutter-glx-0.6.a
+%{_libdir}/libclutter-glx-0.8.a
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/%{name}
+%{_gtkdocdir}/clutter
+%{_gtkdocdir}/cogl
