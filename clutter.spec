@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	0.8.8
-Release:	2
+Version:	1.0.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/0.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	20f9ab406a9fa261a0a3379eb6f43625
+Source0:	http://www.clutter-project.org/sources/clutter/1.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	eb1a3db895d914dc29caadd15bc1f5e0
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.53
@@ -18,6 +18,7 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
+Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +53,7 @@ Requires:	glib2-devel >= 1:2.10
 Requires:	gtk+2-devel >= 1:2.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXfixes-devel >= 4
+Obsoletes:	clutter-cairo-devel < 1.0
 
 %description devel
 Header files for clutter library.
@@ -64,6 +66,7 @@ Summary:	Static clutter library
 Summary(pl.UTF-8):	Statyczna biblioteka clutter
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Obsoletes:	clutter-cairo-static < 1.0
 
 %description static
 Static clutter library.
@@ -89,7 +92,7 @@ Dokumentacja API clutter.
 %build
 %{__gtkdocize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I build/autotools
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -97,8 +100,7 @@ Dokumentacja API clutter.
 	--enable-gtk-doc \
 	--enable-static \
 	--with-html-dir=%{_gtkdocdir}
-
-%{__make}
+%{__make} -j 1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -115,21 +117,25 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libclutter-glx-0.8.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-0.8.so.0
+%attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-1.0.so.0
+%{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libclutter-glx-0.8.so
-%{_libdir}/libclutter-glx-0.8.la
-%{_includedir}/clutter-0.8
-%{_pkgconfigdir}/clutter-0.8.pc
-%{_pkgconfigdir}/clutter-glx-0.8.pc
-%{_pkgconfigdir}/clutter-x11-0.8.pc
+%attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so
+%{_libdir}/libclutter-glx-1.0.la
+%{_includedir}/clutter-1.0
+%{_datadir}/gir-1.0/*.gir
+%{_pkgconfigdir}/clutter-1.0.pc
+%{_pkgconfigdir}/clutter-glx-1.0.pc
+%{_pkgconfigdir}/clutter-x11-1.0.pc
+%{_pkgconfigdir}/cogl-1.0.pc
+%{_pkgconfigdir}/cogl-gl-1.0.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libclutter-glx-0.8.a
+%{_libdir}/libclutter-glx-1.0.a
 
 %files apidocs
 %defattr(644,root,root,755)
