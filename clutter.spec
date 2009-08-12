@@ -11,10 +11,12 @@ URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	cairo-devel >= 1.6
 BuildRequires:	glib2-devel >= 1:2.10
 BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	libtool
+BuildRequires:	pango-devel >= 1.20
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
