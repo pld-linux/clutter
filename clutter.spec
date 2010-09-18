@@ -2,7 +2,7 @@ Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
 Version:	1.2.12
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.clutter-project.org/sources/clutter/1.2/%{name}-%{version}.tar.bz2
@@ -56,6 +56,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	glib2-devel >= 1:2.16
 Requires:	gtk+2-devel >= 1:2.0
+Requires:	json-glib-devel >= 0.8.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXfixes-devel >= 4
 Obsoletes:	clutter-cairo-devel < 1.0
