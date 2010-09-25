@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.2.12
-Release:	2
+Version:	1.4.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/1.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	76f70e765adcf7146be1ceb50bafa14f
+Source0:	http://www.clutter-project.org/sources/clutter/1.4/%{name}-%{version}.tar.bz2
+# Source0-md5:	329b6ac4e14b6f63b23297cfbb05af93
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.59
@@ -14,9 +14,10 @@ BuildRequires:	automake >= 1:1.10
 BuildRequires:	cairo-devel >= 1.6
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	json-glib-devel >= 0.8.0
+BuildRequires:	json-glib-devel >= 0.10.4-3
 BuildRequires:	libtool
 BuildRequires:	pango-devel >= 1:1.20
 BuildRequires:	pkgconfig
@@ -135,6 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libclutter-glx-1.0.la
 %{_includedir}/clutter-1.0
 %{_datadir}/gir-1.0/*.gir
+%{_pkgconfigdir}/cally-1.0.pc
 %{_pkgconfigdir}/clutter-1.0.pc
 %{_pkgconfigdir}/clutter-glx-1.0.pc
 %{_pkgconfigdir}/clutter-x11-1.0.pc
@@ -147,5 +149,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
+%{_gtkdocdir}/cally
 %{_gtkdocdir}/clutter
 %{_gtkdocdir}/cogl
