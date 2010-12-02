@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.4.0
-Release:	1
+Version:	1.5.8
+Release:	0.9
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/1.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	329b6ac4e14b6f63b23297cfbb05af93
+Source0:	http://www.clutter-project.org/sources/clutter/1.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	13ec874ac78a2507c4b7fa064a77ea04
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.59
@@ -105,8 +105,10 @@ Dokumentacja API clutter.
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	--with-json=system \
+	--with-flavour=glx \
+	--enable-docs \
 	--enable-gtk-doc \
+	--enable-cogl2-reference \
 	--enable-static \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -117,15 +119,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang clutter-1.0
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f clutter-1.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README TODO
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libclutter-glx-1.0.so.0
 %{_libdir}/girepository-1.0/*.typelib
@@ -151,4 +155,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/cally
 %{_gtkdocdir}/clutter
+# fix make install
+#%{_gtkdocdir}/clutter-cookbook
 %{_gtkdocdir}/cogl
