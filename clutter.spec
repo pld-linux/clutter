@@ -1,12 +1,15 @@
+# TODO:
+# - Fix unpackaged language files, %find_lang doesn't seem to work here
+#
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.4.0
+Version:	1.4.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.clutter-project.org/sources/clutter/1.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	329b6ac4e14b6f63b23297cfbb05af93
+# Source0-md5:	5a3c6d8414d4e286aba0a936f344c9b1
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.59
