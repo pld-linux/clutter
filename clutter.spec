@@ -9,21 +9,30 @@ Source0:	http://www.clutter-project.org/sources/clutter/1.4/%{name}-%{version}.t
 # Source0-md5:	5a3c6d8414d4e286aba0a936f344c9b1
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
-BuildRequires:	autoconf >= 2.59
-BuildRequires:	automake >= 1:1.10
+BuildRequires:	atk-devel >= 1:1.7
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.6
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	gdk-pixbuf2-devel >= 2.0
+BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	gtk+2-devel >= 1:2.0
-BuildRequires:	gtk-doc >= 1.8
+BuildRequires:	gtk-doc >= 1.13
 BuildRequires:	json-glib-devel >= 0.10.4-3
-BuildRequires:	libtool
+BuildRequires:	libdrm-devel
+BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pango-devel >= 1:1.20
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
 BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXcomposite-devel >= 0.4
+BuildRequires:	xorg-lib-libXdamage-devel
+BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
+BuildRequires:	xorg-lib-libXi-devel
+Requires:	glib2 >= 1:2.18.0
+Requires:	json-glib >= 0.10.4-3
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,10 +64,16 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	glib2-devel >= 1:2.16
-Requires:	gtk+2-devel >= 1:2.0
-Requires:	json-glib-devel >= 0.8.0
+Requires:	atk-devel >= 1:1.7
+Requires:	glib2-devel >= 1:2.18.0
+Requires:	gdk-pixbuf2-devel >= 2.0
+Requires:	json-glib-devel >= 0.10.4-3
+Requires:	libdrm-devel
+Requires:	pango-devel >= 1:1.20
 Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXcomposite-devel >= 0.4
+Requires:	xorg-lib-libXdamage-devel
+Requires:	xorg-lib-libXext-devel
 Requires:	xorg-lib-libXfixes-devel >= 4
 Obsoletes:	clutter-cairo-devel < 1.0
 
@@ -130,14 +145,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libclutter-glx-1.0.so.0
-%{_libdir}/girepository-1.0/*.typelib
+%{_libdir}/girepository-1.0/Cally-1.0.typelib
+%{_libdir}/girepository-1.0/Clutter-1.0.typelib
+%{_libdir}/girepository-1.0/ClutterX11-1.0.typelib
+%{_libdir}/girepository-1.0/Cogl-1.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so
 %{_libdir}/libclutter-glx-1.0.la
 %{_includedir}/clutter-1.0
-%{_datadir}/gir-1.0/*.gir
+%{_datadir}/gir-1.0/Cally-1.0.gir
+%{_datadir}/gir-1.0/Clutter-1.0.gir
+%{_datadir}/gir-1.0/ClutterX11-1.0.gir
+%{_datadir}/gir-1.0/Cogl-1.0.gir
 %{_pkgconfigdir}/cally-1.0.pc
 %{_pkgconfigdir}/clutter-1.0.pc
 %{_pkgconfigdir}/clutter-glx-1.0.pc
