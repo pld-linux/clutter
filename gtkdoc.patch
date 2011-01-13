@@ -1,0 +1,10 @@
+--- clutter-1.5.12/doc/cookbook/Makefile.am.wiget	2011-01-13 21:36:43.193867420 +0100
++++ clutter-1.5.12/doc/cookbook/Makefile.am	2011-01-13 21:37:00.204413186 +0100
+@@ -4,7 +4,6 @@ SUBDIRS = examples
+ 
+ NULL =
+ 
+-HTML_DIR = $(datadir)/gtk-doc/html
+ TARGET_DIR = $(HTML_DIR)/clutter-cookbook
+ 
+ XML_FILES = \
