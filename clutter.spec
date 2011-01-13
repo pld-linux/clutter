@@ -1,12 +1,13 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.5.8
-Release:	0.9
+Version:	1.5.12
+Release:	0.1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.clutter-project.org/sources/clutter/1.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	13ec874ac78a2507c4b7fa064a77ea04
+# Source0-md5:	8220b2ed95be9aeb4a8e566096449b15
+Patch0:		gtkdoc.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.59
@@ -95,6 +96,7 @@ Dokumentacja API clutter.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gtkdocize}
@@ -108,7 +110,6 @@ Dokumentacja API clutter.
 	--with-flavour=glx \
 	--enable-docs \
 	--enable-gtk-doc \
-	--enable-cogl2-reference \
 	--enable-static \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -155,6 +156,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/cally
 %{_gtkdocdir}/clutter
-# fix make install
-#%{_gtkdocdir}/clutter-cookbook
+%{_gtkdocdir}/clutter-cookbook
 %{_gtkdocdir}/cogl
