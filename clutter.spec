@@ -1,30 +1,40 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.5.12
+Version:	1.6.0
 Release:	0.1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/1.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	8220b2ed95be9aeb4a8e566096449b15
+Source0:	http://www.clutter-project.org/sources/clutter/1.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	71cf28a989c24c3ff2c5f704b080ed3c
 Patch0:		gtkdoc.patch
+Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
-BuildRequires:	autoconf >= 2.59
-BuildRequires:	automake >= 1:1.10
-BuildRequires:	cairo-devel >= 1.6
+BuildRequires:	atk-devel >= 1.7
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	cairo-devel
+BuildRequires:	cairo-gobject-devel >= 1.10
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	gdk-pixbuf2-devel
+BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	gtk+2-devel >= 1:2.0
-BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	json-glib-devel >= 0.10.4-3
-BuildRequires:	libtool
+BuildRequires:	gtk-doc >= 1.13
+BuildRequires:	json-glib-devel >= 0.12
+BuildRequires:	libtool >= 2.2.6
+BuildRequires:	libxslt-progs
+BuildRequires:	pango-devel >= 1.20
 BuildRequires:	pango-devel >= 1:1.20
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
 BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXcomposite-devel >= 0.4
+BuildRequires:	xorg-lib-libXdamage-devel
+BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
+BuildRequires:	xorg-lib-libXi-devel
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -97,6 +107,7 @@ Dokumentacja API clutter.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__gtkdocize}
@@ -120,6 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-glx-1.0.la
+
 %find_lang clutter-1.0
 
 %clean
@@ -138,7 +151,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so
-%{_libdir}/libclutter-glx-1.0.la
 %{_includedir}/clutter-1.0
 %{_datadir}/gir-1.0/*.gir
 %{_pkgconfigdir}/cally-1.0.pc
