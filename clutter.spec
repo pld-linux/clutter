@@ -1,29 +1,30 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.6.4
+Version:	1.6.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.clutter-project.org/sources/clutter/1.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	faa6c93e4761bfd47e48106abf9a17ca
+Source0:	http://source.clutter-project.org/sources/clutter/1.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	71e1ad61211b8e92583a4f98f137f471
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
+Patch2:		%{name}-sh.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
-BuildRequires:	atk-devel >= 1.7
+BuildRequires:	atk-devel >= 1:1.17
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	cairo-devel
+BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gdk-pixbuf2-devel
+BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk-doc >= 1.13
 BuildRequires:	json-glib-devel >= 0.12
-BuildRequires:	libtool >= 2.2.6
+BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.20
 BuildRequires:	pkgconfig
@@ -34,6 +35,8 @@ BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRequires:	xorg-lib-libXi-devel
+Requires:	glib2 >= 1:2.26.0
+Requires:	json-glib >= 0.12
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -65,9 +68,9 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	glib2-devel >= 1:2.26
-Requires:	gtk+2-devel >= 1:2.0
-Requires:	json-glib-devel >= 0.8.0
+Requires:	glib2-devel >= 1:2.26.0
+Requires:	gdk-pixbuf2-devel >= 2.0
+Requires:	json-glib-devel >= 0.12.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
 Requires:	xorg-lib-libXdamage-devel
@@ -110,6 +113,7 @@ Dokumentacja API clutter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gtkdocize}
