@@ -35,8 +35,11 @@ BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRequires:	xorg-lib-libXi-devel
+Requires:	atk >= 1:1.17
+Requires:	cairo-gobject >= 1.10
 Requires:	glib2 >= 1:2.26.0
 Requires:	json-glib >= 0.12
+Requires:	pango >= 1:1.20
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -68,9 +71,12 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
+Requires:	atk-devel >= 1:1.17
+Requires:	cairo-gobject-devel >= 1.10
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	json-glib-devel >= 0.12.0
+Requires:	pango-devel >= 1:1.20
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
 Requires:	xorg-lib-libXdamage-devel
