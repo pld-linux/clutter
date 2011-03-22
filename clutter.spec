@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.6.8
+Version:	1.6.10
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://source.clutter-project.org/sources/clutter/1.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	9eedac4216f709a9f144940d24bfbb3e
+# Source0-md5:	be9385bb3363d63ac1fac6bf2987a9bf
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 Patch2:		%{name}-sh.patch
@@ -68,8 +68,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	glib2-devel >= 1:2.26.0
 Requires:	gdk-pixbuf2-devel >= 2.0
+Requires:	glib2-devel >= 1:2.26.0
 Requires:	json-glib-devel >= 0.12.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
