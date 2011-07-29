@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.6.16
+Version:	1.7.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://source.clutter-project.org/sources/clutter/1.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	9c7e9c5356d7e3405b756ce6a91c15f3
+Source0:	http://source.clutter-project.org/sources/clutter/1.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	001725ad415b2b24ebcd87e1580d852c
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
@@ -16,6 +16,7 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
+BuildRequires:	cogl-devel >= 1.7.4
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
@@ -72,6 +73,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:1.17
 Requires:	cairo-gobject-devel >= 1.10
+Requires:	cogl-devel >= 1.7.4
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	json-glib-devel >= 0.12.0
@@ -153,13 +155,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f clutter-1.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libclutter-glx-1.0.so.0
 %{_libdir}/girepository-1.0/Cally-1.0.typelib
 %{_libdir}/girepository-1.0/Clutter-1.0.typelib
 %{_libdir}/girepository-1.0/ClutterX11-1.0.typelib
-%{_libdir}/girepository-1.0/Cogl-1.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -168,13 +169,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/Cally-1.0.gir
 %{_datadir}/gir-1.0/Clutter-1.0.gir
 %{_datadir}/gir-1.0/ClutterX11-1.0.gir
-%{_datadir}/gir-1.0/Cogl-1.0.gir
 %{_pkgconfigdir}/cally-1.0.pc
 %{_pkgconfigdir}/clutter-1.0.pc
+%{_pkgconfigdir}/clutter-cogl-1.0.pc
 %{_pkgconfigdir}/clutter-glx-1.0.pc
 %{_pkgconfigdir}/clutter-x11-1.0.pc
-%{_pkgconfigdir}/cogl-1.0.pc
-%{_pkgconfigdir}/cogl-gl-1.0.pc
 
 %files static
 %defattr(644,root,root,755)
@@ -185,4 +184,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/cally
 %{_gtkdocdir}/clutter
 %{_gtkdocdir}/clutter-cookbook
-%{_gtkdocdir}/cogl
