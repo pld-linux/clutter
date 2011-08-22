@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.7.6
+Version:	1.7.10
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://source.clutter-project.org/sources/clutter/1.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	001725ad415b2b24ebcd87e1580d852c
+# Source0-md5:	b7a7bc881d5e71fb70a165fd41b07f5e
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
@@ -16,7 +16,7 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
-BuildRequires:	cogl-devel >= 1.7.4
+BuildRequires:	cogl-devel >= 1.7.6
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
@@ -73,7 +73,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:1.17
 Requires:	cairo-gobject-devel >= 1.10
-Requires:	cogl-devel >= 1.7.4
+Requires:	cogl-devel >= 1.7.6
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	json-glib-devel >= 0.12.0
