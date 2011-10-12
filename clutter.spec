@@ -11,7 +11,7 @@ Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
-BuildRequires:	atk-devel >= 1:1.17
+BuildRequires:	atk-devel >= 1:2.1.5
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
@@ -20,7 +20,7 @@ BuildRequires:	cogl-devel >= 1.8.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk-doc >= 1.13
 BuildRequires:	json-glib-devel >= 0.12
@@ -37,9 +37,10 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xz
-Requires:	atk >= 1:1.17
+Requires:	atk >= 1:2.1.5
 Requires:	cairo-gobject >= 1.10
-Requires:	glib2 >= 1:2.26.0
+Requires:	cogl >= 1.8.0
+Requires:	glib2 >= 1:2.28.0
 Requires:	json-glib >= 0.12
 Requires:	pango >= 1:1.20
 Obsoletes:	clutter-cairo < 1.0
@@ -73,11 +74,11 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	atk-devel >= 1:1.17
+Requires:	atk-devel >= 1:2.1.5
 Requires:	cairo-gobject-devel >= 1.10
-Requires:	cogl-devel >= 1.7.6
+Requires:	cogl-devel >= 1.8.0
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.26.0
+Requires:	glib2-devel >= 1:2.28.0
 Requires:	json-glib-devel >= 0.12.0
 Requires:	pango-devel >= 1:1.20
 Requires:	xorg-lib-libX11-devel
@@ -146,6 +147,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-glx-1.0.la
+
+# move to %{_examplesdir} and package in -examples?
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/clutter-1.0/cookbook/examples
 
 %find_lang clutter-1.0
 
