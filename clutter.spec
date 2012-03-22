@@ -148,6 +148,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-1.0.la
 
+# drop unsupported locale
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/az_IR
+
 # move to %{_examplesdir} and package in -examples?
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/clutter-1.0/cookbook/examples
 
