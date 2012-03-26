@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.8.4
+Version:	1.10.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://source.clutter-project.org/sources/clutter/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	bb9136323317b6acb0a399f66168345a
+Source0:	http://source.clutter-project.org/sources/clutter/1.10/%{name}-%{version}.tar.xz
+# Source0-md5:	574ed008d4aa1a0587909750b8a8319e
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
@@ -16,13 +16,14 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
-BuildRequires:	cogl-devel >= 1.8.0
+BuildRequires:	cogl-devel >= 1.10.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.31.19
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	gtk-doc >= 1.13
+BuildRequires:	gtk+3-devel >= 3.3.18
+BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	json-glib-devel >= 0.12
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
@@ -39,8 +40,8 @@ BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xz
 Requires:	atk >= 1:2.1.5
 Requires:	cairo-gobject >= 1.10
-Requires:	cogl >= 1.8.0
-Requires:	glib2 >= 1:2.28.0
+Requires:	cogl >= 1.10.0
+Requires:	glib2 >= 1:2.31.19
 Requires:	json-glib >= 0.12
 Requires:	pango >= 1:1.20
 Obsoletes:	clutter-cairo < 1.0
@@ -76,9 +77,9 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.1.5
 Requires:	cairo-gobject-devel >= 1.10
-Requires:	cogl-devel >= 1.8.0
+Requires:	cogl-devel >= 1.10.0
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.28.0
+Requires:	glib2-devel >= 1:2.31.19
 Requires:	json-glib-devel >= 0.12.0
 Requires:	pango-devel >= 1:1.20
 Requires:	xorg-lib-libX11-devel
@@ -133,7 +134,6 @@ Dokumentacja API clutter.
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	--with-flavour=glx \
 	--enable-docs \
 	--enable-gtk-doc \
 	--enable-static \
@@ -146,7 +146,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-glx-1.0.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-1.0.la
+
+# drop unsupported locale
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/az_IR
 
 # move to %{_examplesdir} and package in -examples?
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/clutter-1.0/cookbook/examples
@@ -162,28 +165,33 @@ rm -rf $RPM_BUILD_ROOT
 %files -f clutter-1.0.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libclutter-glx-1.0.so.0
+%attr(755,root,root) %{_libdir}/libclutter-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclutter-1.0.so.0
+%attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.0
 %{_libdir}/girepository-1.0/Cally-1.0.typelib
 %{_libdir}/girepository-1.0/Clutter-1.0.typelib
+%{_libdir}/girepository-1.0/ClutterGdk-1.0.typelib
 %{_libdir}/girepository-1.0/ClutterX11-1.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libclutter-1.0.so
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so
 %{_includedir}/clutter-1.0
 %{_datadir}/gir-1.0/Cally-1.0.gir
 %{_datadir}/gir-1.0/Clutter-1.0.gir
+%{_datadir}/gir-1.0/ClutterGdk-1.0.gir
 %{_datadir}/gir-1.0/ClutterX11-1.0.gir
 %{_pkgconfigdir}/cally-1.0.pc
 %{_pkgconfigdir}/clutter-1.0.pc
 %{_pkgconfigdir}/clutter-cogl-1.0.pc
+%{_pkgconfigdir}/clutter-gdk-1.0.pc
 %{_pkgconfigdir}/clutter-glx-1.0.pc
 %{_pkgconfigdir}/clutter-x11-1.0.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libclutter-glx-1.0.a
+%{_libdir}/libclutter-1.0.a
 
 %files apidocs
 %defattr(644,root,root,755)
