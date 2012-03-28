@@ -24,7 +24,7 @@ BuildRequires:	glib2-devel >= 1:2.31.19
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk+3-devel >= 3.3.18
 BuildRequires:	gtk-doc >= 1.15
-BuildRequires:	json-glib-devel >= 0.12
+BuildRequires:	json-glib-devel >= 0.12.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.20
@@ -42,7 +42,8 @@ Requires:	atk >= 1:2.1.5
 Requires:	cairo-gobject >= 1.10
 Requires:	cogl >= 1.10.0
 Requires:	glib2 >= 1:2.31.19
-Requires:	json-glib >= 0.12
+Requires:	gtk+3 >= 3.3.18
+Requires:	json-glib >= 0.12.0
 Requires:	pango >= 1:1.20
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -80,6 +81,7 @@ Requires:	cairo-gobject-devel >= 1.10
 Requires:	cogl-devel >= 1.10.0
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.31.19
+Requires:	gtk+3-devel >= 3.3.18
 Requires:	json-glib-devel >= 0.12.0
 Requires:	pango-devel >= 1:1.20
 Requires:	xorg-lib-libX11-devel
