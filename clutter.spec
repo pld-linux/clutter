@@ -1,12 +1,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.10.2
+Version:	1.10.4
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://source.clutter-project.org/sources/clutter/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	7447512b4cb4e7b360a691ed2ceee1b1
+# Source0-md5:	a26f59d594441983fb677ea189417839
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
@@ -151,7 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-1.0.la
 
 # drop unsupported locale
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/az_IR
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/az_IR
 
 # move to %{_examplesdir} and package in -examples?
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/clutter-1.0/cookbook/examples
