@@ -76,7 +76,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	atk-devel >= 1:2.53
+Requires:	atk-devel >= 1:2.5.3
 Requires:	cairo-gobject-devel >= 1.10
 Requires:	cogl-devel >= 1.10.0
 Requires:	gdk-pixbuf2-devel >= 2.0
