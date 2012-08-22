@@ -1,17 +1,17 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.10.8
+Version:	1.11.12
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	ec951ad480c732fdedc3023eafe73529
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.11/%{name}-%{version}.tar.xz
+# Source0-md5:	0c49cbe2cdc205d099a8144512fcf875
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
-BuildRequires:	atk-devel >= 1:2.1.5
+BuildRequires:	atk-devel >= 1:2.5.3
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
@@ -20,14 +20,14 @@ BuildRequires:	cogl-devel >= 1.10.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.31.19
-BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	gtk+3-devel >= 3.3.18
+BuildRequires:	glib2-devel >= 1:2.32.0
+BuildRequires:	gobject-introspection-devel >= 0.10.0
+BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	json-glib-devel >= 0.12.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
-BuildRequires:	pango-devel >= 1:1.20
+BuildRequires:	pango-devel >= 1:1.30
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
 BuildRequires:	tar >= 1:1.22
@@ -38,13 +38,13 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xz
-Requires:	atk >= 1:2.1.5
+Requires:	atk >= 1:2.5.3
 Requires:	cairo-gobject >= 1.10
 Requires:	cogl >= 1.10.0
-Requires:	glib2 >= 1:2.31.19
-Requires:	gtk+3 >= 3.3.18
+Requires:	glib2 >= 1:2.32.0
+Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
-Requires:	pango >= 1:1.20
+Requires:	pango >= 1:1.30
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -76,14 +76,14 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki clutter
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
-Requires:	atk-devel >= 1:2.1.5
+Requires:	atk-devel >= 1:2.53
 Requires:	cairo-gobject-devel >= 1.10
 Requires:	cogl-devel >= 1.10.0
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.31.19
-Requires:	gtk+3-devel >= 3.3.18
+Requires:	glib2-devel >= 1:2.32.0
+Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
-Requires:	pango-devel >= 1:1.20
+Requires:	pango-devel >= 1:1.30
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
 Requires:	xorg-lib-libXdamage-devel
