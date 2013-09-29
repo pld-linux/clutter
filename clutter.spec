@@ -1,3 +1,10 @@
+#
+# Conditional build:
+%bcond_without	egl	# EGL framebuffer backend
+%bcond_without	wayland	# Wayland backend
+%bcond_with	evdev	# evdev support for input events
+%bcond_with	tslib	# TSLib support for input events (outdated?)
+#
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
@@ -17,6 +24,7 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
 BuildRequires:	cogl-devel >= 1.15.9
+%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.15.9}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
@@ -25,24 +33,32 @@ BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	json-glib-devel >= 0.12.0
+%{?with_evdev:BuildRequires:	libevdev-devel}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.30
-BuildRequires:	pkgconfig >= 0.16
+BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	python-modules
 BuildRequires:	tar >= 1:1.22
+%{?with_tslib:BuildRequires:	tslib-devel >= 1.1}
+%{?with_evdev:BuildRequires:	udev-glib-devel}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXcomposite-devel >= 0.4
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRequires:	xorg-lib-libXi-devel
+%if %{with evdev} || %{with wayland}
+BuildRequires:	xorg-lib-libxkbcommon-devel
+%endif
 BuildRequires:	xz
-BuildRequires:	wayland-devel
+# wayland-client wayland-cursor (for client), wayland-server (for compositor)
+%{?with_wayland:BuildRequires:	wayland-devel}
 BuildRequires:	xorg-lib-libxkbcommon-devel
 Requires:	atk >= 1:2.5.3
 Requires:	cairo-gobject >= 1.10
 Requires:	cogl >= 1.15.9
+%{?with_wayland:Requires:	cogl(wayland) >= 1.15.9}
 Requires:	glib2 >= 1:2.37.3
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
@@ -80,9 +96,10 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.5.3
 Requires:	cairo-gobject-devel >= 1.10
-Requires:	cogl-devel >= 1.14.0
+Requires:	cogl-devel >= 1.15.9
+%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.15.9}
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.32.0
+Requires:	glib2-devel >= 1:2.37.3
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
 Requires:	pango-devel >= 1:1.30
@@ -139,12 +156,16 @@ Dokumentacja API clutter.
 %configure \
 	--disable-silent-rules \
 	--enable-docs \
+	%{?with_egl:--enable-egl-backend} \
+	%{?with_evdev:--enable-evdev-input} \
+	--enable-gdk-backend \
 	--enable-gtk-doc \
 	--enable-static \
+	%{?with_tslib:--enable-tslib-input} \
+%if %{with wayland}
 	--enable-wayland-backend \
 	--enable-wayland-compositor \
-	--enable-egl-backend \
-	--enable-gdk-backend \
+%endif
 	--enable-xinput \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -156,9 +177,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libclutter-1.0.la
-
-# drop unsupported locale
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/az_IR
 
 # move to %{_examplesdir} and package in -examples?
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/clutter-1.0/cookbook/examples
