@@ -2,14 +2,14 @@
 # Conditional build:
 %bcond_without	egl	# EGL framebuffer backend
 %bcond_without	wayland	# Wayland backend
-%bcond_with	evdev	# evdev support for input events
+%bcond_without	evdev	# evdev support for input events
 %bcond_with	tslib	# TSLib support for input events (outdated?)
 #
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
 Version:	1.16.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.16/%{name}-%{version}.tar.xz
@@ -63,6 +63,7 @@ Requires:	glib2 >= 1:2.37.3
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
 Requires:	pango >= 1:1.30
+%{?with_evdev:Provides:	clutter(evdev) = %{version}-%{release}}
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -109,6 +110,7 @@ Requires:	xorg-lib-libXdamage-devel
 Requires:	xorg-lib-libXext-devel
 Requires:	xorg-lib-libXfixes-devel >= 4
 Obsoletes:	clutter-cairo-devel < 1.0
+%{?with_evdev:Provides:	clutter-devel(evdev) = %{version}-%{release}}
 
 %description devel
 Header files for clutter library.
@@ -122,6 +124,7 @@ Summary(pl.UTF-8):	Statyczna biblioteka clutter
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	clutter-cairo-static < 1.0
+%{?with_evdev:Provides:	clutter-static(evdev) = %{version}-%{release}}
 
 %description static
 Static clutter library.
