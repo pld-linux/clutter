@@ -8,15 +8,14 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.17.4
+Version:	1.18.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.17/%{name}-%{version}.tar.xz
-# Source0-md5:	96a5dd7ef5156b231c245e0e7d0e4e93
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.18/%{name}-%{version}.tar.xz
+# Source0-md5:	bdd6426ab2ca4885164736aa49dcea0a
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
-Patch2:		fix-evdev-touchpad.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	atk-devel >= 1:2.5.3
@@ -24,8 +23,8 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
-BuildRequires:	cogl-devel >= 1.15.9
-%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.15.9}
+BuildRequires:	cogl-devel >= 1.18.0
+%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.18.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
@@ -35,6 +34,7 @@ BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
+BuildRequires:	libinput-devel
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.30
@@ -58,8 +58,8 @@ BuildRequires:	xz
 BuildRequires:	xorg-lib-libxkbcommon-devel
 Requires:	atk >= 1:2.5.3
 Requires:	cairo-gobject >= 1.10
-Requires:	cogl >= 1.15.9
-%{?with_wayland:Requires:	cogl(wayland) >= 1.15.9}
+Requires:	cogl >= 1.18.0
+%{?with_wayland:Requires:	cogl(wayland) >= 1.18.0}
 Requires:	glib2 >= 1:2.37.3
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
@@ -98,8 +98,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.5.3
 Requires:	cairo-gobject-devel >= 1.10
-Requires:	cogl-devel >= 1.15.9
-%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.15.9}
+Requires:	cogl-devel >= 1.18.0
+%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.18.0}
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.37.3
 Requires:	gtk+3-devel >= 3.4.0
@@ -149,7 +149,6 @@ Dokumentacja API clutter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__gtkdocize}
