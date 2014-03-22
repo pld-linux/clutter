@@ -21,8 +21,8 @@ BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	atk-devel >= 1:2.5.3
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	cairo-devel >= 1.10
-BuildRequires:	cairo-gobject-devel >= 1.10
+BuildRequires:	cairo-devel >= 1.12.0
+BuildRequires:	cairo-gobject-devel >= 1.12.0
 BuildRequires:	cogl-devel >= 1.18.0
 %{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.18.0}
 BuildRequires:	docbook-dtd412-xml
@@ -31,10 +31,10 @@ BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.37.3
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.4.0
-BuildRequires:	gtk-doc >= 1.15
+BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
-BuildRequires:	libinput-devel
+%{?with_evdev:BuildRequires:	libinput-devel >= 0.1.0}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.30
@@ -42,7 +42,10 @@ BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	python-modules
 BuildRequires:	tar >= 1:1.22
 %{?with_tslib:BuildRequires:	tslib-devel >= 1.1}
+%{?with_evdev:BuildRequires:	udev-devel >= 1:136}
 %{?with_evdev:BuildRequires:	udev-glib-devel}
+# wayland-client wayland-cursor (for client), wayland-server (for compositor)
+%{?with_wayland:BuildRequires:	wayland-devel}
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXcomposite-devel >= 0.4
 BuildRequires:	xorg-lib-libXdamage-devel
@@ -53,17 +56,16 @@ BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel
 %endif
 BuildRequires:	xz
-# wayland-client wayland-cursor (for client), wayland-server (for compositor)
-%{?with_wayland:BuildRequires:	wayland-devel}
-BuildRequires:	xorg-lib-libxkbcommon-devel
 Requires:	atk >= 1:2.5.3
-Requires:	cairo-gobject >= 1.10
+Requires:	cairo-gobject >= 1.12.0
 Requires:	cogl >= 1.18.0
 %{?with_wayland:Requires:	cogl(wayland) >= 1.18.0}
 Requires:	glib2 >= 1:2.37.3
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
+%{?with_evdev:Requires:	libinput >= 0.1.0}
 Requires:	pango >= 1:1.30
+%{?with_evdev:Requires:	udev-libs >= 1:136}
 %{?with_evdev:Provides:	clutter(evdev) = %{version}-%{release}}
 Obsoletes:	clutter-cairo < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -97,21 +99,27 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.5.3
-Requires:	cairo-gobject-devel >= 1.10
+Requires:	cairo-gobject-devel >= 1.12.0
 Requires:	cogl-devel >= 1.18.0
 %{?with_wayland:Requires:	cogl-devel(wayland) >= 1.18.0}
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.37.3
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
+%{?with_evdev:Requires:	libinput-devel >= 0.1.0}
 Requires:	pango-devel >= 1:1.30
+%{?with_evdev:Requires:	udev-devel >= 1:136}
+%{?with_wayland:Requires:	wayland-devel}
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
 Requires:	xorg-lib-libXdamage-devel
 Requires:	xorg-lib-libXext-devel
 Requires:	xorg-lib-libXfixes-devel >= 4
-Obsoletes:	clutter-cairo-devel < 1.0
+%if %{with evdev} || %{with wayland}
+Requires:	xorg-lib-libxkbcommon-devel
+%endif
 %{?with_evdev:Provides:	clutter-devel(evdev) = %{version}-%{release}}
+Obsoletes:	clutter-cairo-devel < 1.0
 
 %description devel
 Header files for clutter library.
