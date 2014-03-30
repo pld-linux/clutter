@@ -4,12 +4,12 @@
 %bcond_without	wayland	# Wayland backend
 %bcond_without	evdev	# evdev support for input events
 %bcond_with	tslib	# TSLib support for input events (outdated?)
-#
+
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
 Version:	1.18.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.18/%{name}-%{version}.tar.xz
@@ -30,7 +30,7 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.37.3
 BuildRequires:	gobject-introspection-devel >= 0.10.0
-BuildRequires:	gtk+3-devel >= 3.4.0
+BuildRequires:	gtk+4-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
@@ -109,7 +109,7 @@ Requires:	json-glib-devel >= 0.12.0
 %{?with_evdev:Requires:	libinput-devel >= 0.1.0}
 Requires:	pango-devel >= 1:1.30
 %{?with_evdev:Requires:	udev-devel >= 1:136}
-%{?with_wayland:Requires:	wayland-devel}
+%{?with_wayland:Requires: wayland-devel}
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
 Requires:	xorg-lib-libXdamage-devel
@@ -132,8 +132,8 @@ Summary:	Static clutter library
 Summary(pl.UTF-8):	Statyczna biblioteka clutter
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Obsoletes:	clutter-cairo-static < 1.0
 %{?with_evdev:Provides:	clutter-static(evdev) = %{version}-%{release}}
+Obsoletes:	clutter-cairo-static < 1.0
 
 %description static
 Static clutter library.
@@ -146,6 +146,9 @@ Summary:	clutter API documentation
 Summary(pl.UTF-8):	Dokumentacja API clutter
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 clutter API documentation.
