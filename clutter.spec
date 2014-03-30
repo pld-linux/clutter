@@ -30,7 +30,7 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.37.3
 BuildRequires:	gobject-introspection-devel >= 0.10.0
-BuildRequires:	gtk+4-devel >= 3.4.0
+BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
