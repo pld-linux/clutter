@@ -9,13 +9,14 @@ Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
 Version:	1.18.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.18/%{name}-%{version}.tar.xz
 # Source0-md5:	471f5ea423e20d4140c7771873daef29
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
+Patch2:		%{name}-libinput.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	atk-devel >= 1:2.5.3
@@ -34,7 +35,7 @@ BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
-%{?with_evdev:BuildRequires:	libinput-devel >= 0.1.0}
+%{?with_evdev:BuildRequires:	libinput-devel >= 0.4.0}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.30
@@ -63,7 +64,7 @@ Requires:	cogl >= 1.18.0
 Requires:	glib2 >= 1:2.37.3
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
-%{?with_evdev:Requires:	libinput >= 0.1.0}
+%{?with_evdev:Requires:	libinput >= 0.4.0}
 Requires:	pango >= 1:1.30
 %{?with_evdev:Requires:	udev-libs >= 1:136}
 %{?with_evdev:Provides:	clutter(evdev) = %{version}-%{release}}
@@ -106,7 +107,7 @@ Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.37.3
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
-%{?with_evdev:Requires:	libinput-devel >= 0.1.0}
+%{?with_evdev:Requires:	libinput-devel >= 0.4.0}
 Requires:	pango-devel >= 1:1.30
 %{?with_evdev:Requires:	udev-devel >= 1:136}
 %{?with_wayland:Requires: wayland-devel}
@@ -160,6 +161,7 @@ Dokumentacja API clutter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gtkdocize}
