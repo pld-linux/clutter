@@ -27,7 +27,7 @@ BuildRequires:	cogl-devel >= 1.18.0
 %{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.18.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.37.3
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.4.0
