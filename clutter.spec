@@ -16,6 +16,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.20/%{name}-%{version}.
 # Source0-md5:	a8a33a57a944c6d7c7c013ce9aa3222b
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
+Patch2:		%{name}-libinput.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	atk-devel >= 1:2.5.3
@@ -34,7 +35,7 @@ BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
-%{?with_evdev:BuildRequires:	libinput-devel >= 0.4.0}
+%{?with_evdev:BuildRequires:	libinput-devel >= 0.8.0}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.30
@@ -63,7 +64,7 @@ Requires:	cogl >= 1.18.0
 Requires:	glib2 >= 1:2.37.3
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
-%{?with_evdev:Requires:	libinput >= 0.4.0}
+%{?with_evdev:Requires:	libinput >= 0.8.0}
 Requires:	pango >= 1:1.30
 %{?with_evdev:Requires:	udev-libs >= 1:136}
 %{?with_evdev:Provides:	clutter(evdev) = %{version}-%{release}}
@@ -106,7 +107,7 @@ Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.37.3
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
-%{?with_evdev:Requires:	libinput-devel >= 0.4.0}
+%{?with_evdev:Requires:	libinput-devel >= 0.8.0}
 Requires:	pango-devel >= 1:1.30
 %{?with_evdev:Requires:	udev-devel >= 1:136}
 %{?with_wayland:Requires: wayland-devel}
@@ -160,6 +161,7 @@ Dokumentacja API clutter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gtkdocize}
