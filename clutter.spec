@@ -8,29 +8,28 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.20.0
-Release:	4
+Version:	1.22.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	a8a33a57a944c6d7c7c013ce9aa3222b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.22/%{name}-%{version}.tar.xz
+# Source0-md5:	788c488d795103e4c201fae1b032cb89
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
-Patch2:		%{name}-libinput.patch
 URL:		http://www.clutter-project.org/
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	atk-devel >= 1:2.5.3
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	cairo-devel >= 1.12.0
-BuildRequires:	cairo-gobject-devel >= 1.12.0
-BuildRequires:	cogl-devel >= 1.18.0
-%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.18.0}
+BuildRequires:	cairo-devel >= 1.14.0
+BuildRequires:	cairo-gobject-devel >= 1.14.0
+BuildRequires:	cogl-devel >= 1.20.0
+%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.20.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.37.3
-BuildRequires:	gobject-introspection-devel >= 0.10.0
+BuildRequires:	glib2-devel >= 1:2.39.0
+BuildRequires:	gobject-introspection-devel >= 1.39.0
 BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
@@ -58,10 +57,10 @@ BuildRequires:	xorg-lib-libxkbcommon-devel
 %endif
 BuildRequires:	xz
 Requires:	atk >= 1:2.5.3
-Requires:	cairo-gobject >= 1.12.0
-Requires:	cogl >= 1.18.0
-%{?with_wayland:Requires:	cogl(wayland) >= 1.18.0}
-Requires:	glib2 >= 1:2.37.3
+Requires:	cairo-gobject >= 1.14.0
+Requires:	cogl >= 1.20.0
+%{?with_wayland:Requires:	cogl(wayland) >= 1.20.0}
+Requires:	glib2 >= 1:2.39.0
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
 %{?with_evdev:Requires:	libinput >= 0.8.0}
@@ -100,11 +99,11 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.5.3
-Requires:	cairo-gobject-devel >= 1.12.0
-Requires:	cogl-devel >= 1.18.0
-%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.18.0}
+Requires:	cairo-gobject-devel >= 1.14.0
+Requires:	cogl-devel >= 1.20.0
+%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.20.0}
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.37.3
+Requires:	glib2-devel >= 1:2.39.0
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
 %{?with_evdev:Requires:	libinput-devel >= 0.8.0}
@@ -161,7 +160,6 @@ Dokumentacja API clutter.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__gtkdocize}
