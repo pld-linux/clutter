@@ -1,7 +1,8 @@
 #
 # Conditional build:
 %bcond_without	egl	# EGL framebuffer backend
-%bcond_without	wayland	# Wayland backend
+%bcond_with	mir	# Mir backend (requires cogl support for Mir, which in turn conflicts with wayland)
+%bcond_without	wayland	# Wayland backend and compositor
 %bcond_without	evdev	# evdev support for input events
 %bcond_with	tslib	# TSLib support for input events (outdated?)
 
@@ -37,6 +38,7 @@ BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libinput-devel >= 0.8.0}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
+%{?with_mir:BuildRequires:	mir-devel}
 BuildRequires:	pango-devel >= 1:1.30
 BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	python-modules
@@ -175,6 +177,7 @@ Dokumentacja API clutter.
 	%{?with_evdev:--enable-evdev-input} \
 	--enable-gdk-backend \
 	--enable-gtk-doc \
+	%{?with_mir:--enable-mir-backend} \
 	--enable-static \
 	%{?with_tslib:--enable-tslib-input} \
 %if %{with wayland}
@@ -231,6 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/clutter-glx-1.0.pc
 %{_pkgconfigdir}/clutter-x11-1.0.pc
 %{_pkgconfigdir}/clutter-egl-1.0.pc
+%{?with_mir:%{_pkgconfigdir}/clutter-mir-1.0.pc}
 %{_pkgconfigdir}/clutter-wayland-1.0.pc
 %{_pkgconfigdir}/clutter-wayland-compositor-1.0.pc
 
