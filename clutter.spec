@@ -9,12 +9,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.22.4
+Version:	1.24.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	26494256c980d49703a553916e3083cd
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.24/%{name}-%{version}.tar.xz
+# Source0-md5:	578546c09b5679aa2623660744dbad2f
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
@@ -24,18 +24,18 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.14.0
 BuildRequires:	cairo-gobject-devel >= 1.14.0
-BuildRequires:	cogl-devel >= 1.20.0
+BuildRequires:	cogl-devel >= 1.22.0
 %{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.20.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.39.0
+BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 1.39.0
 BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libevdev-devel}
-%{?with_evdev:BuildRequires:	libinput-devel >= 0.8.0}
+%{?with_evdev:BuildRequires:	libinput-devel >= 0.19.0}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 %{?with_mir:BuildRequires:	mir-devel}
@@ -60,9 +60,9 @@ BuildRequires:	xorg-lib-libxkbcommon-devel
 BuildRequires:	xz
 Requires:	atk >= 1:2.5.3
 Requires:	cairo-gobject >= 1.14.0
-Requires:	cogl >= 1.20.0
+Requires:	cogl >= 1.22.0
 %{?with_wayland:Requires:	cogl(wayland) >= 1.20.0}
-Requires:	glib2 >= 1:2.39.0
+Requires:	glib2 >= 1:2.44.0
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
 %{?with_evdev:Requires:	libinput >= 0.8.0}
@@ -102,10 +102,10 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.5.3
 Requires:	cairo-gobject-devel >= 1.14.0
-Requires:	cogl-devel >= 1.20.0
+Requires:	cogl-devel >= 1.22.0
 %{?with_wayland:Requires:	cogl-devel(wayland) >= 1.20.0}
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.39.0
+Requires:	glib2-devel >= 1:2.44.0
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
 %{?with_evdev:Requires:	libinput-devel >= 0.8.0}
@@ -244,6 +244,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/cally
 %{_gtkdocdir}/clutter
 %{_gtkdocdir}/clutter-cookbook
