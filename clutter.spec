@@ -25,7 +25,7 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.14.0
 BuildRequires:	cairo-gobject-devel >= 1.14.0
 BuildRequires:	cogl-devel >= 1.22.0
-%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.20.0}
+%{?with_wayland:BuildRequires:	cogl-devel(wayland) >= 1.22.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-tools >= 0.17
@@ -61,11 +61,11 @@ BuildRequires:	xz
 Requires:	atk >= 1:2.5.3
 Requires:	cairo-gobject >= 1.14.0
 Requires:	cogl >= 1.22.0
-%{?with_wayland:Requires:	cogl(wayland) >= 1.20.0}
+%{?with_wayland:Requires:	cogl(wayland) >= 1.22.0}
 Requires:	glib2 >= 1:2.44.0
 Requires:	gtk+3 >= 3.4.0
 Requires:	json-glib >= 0.12.0
-%{?with_evdev:Requires:	libinput >= 0.8.0}
+%{?with_evdev:Requires:	libinput >= 0.19.0}
 Requires:	pango >= 1:1.30
 %{?with_evdev:Requires:	udev-libs >= 1:136}
 %{?with_evdev:Provides:	clutter(evdev) = %{version}-%{release}}
@@ -103,12 +103,12 @@ Requires:	OpenGL-GLX-devel
 Requires:	atk-devel >= 1:2.5.3
 Requires:	cairo-gobject-devel >= 1.14.0
 Requires:	cogl-devel >= 1.22.0
-%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.20.0}
+%{?with_wayland:Requires:	cogl-devel(wayland) >= 1.22.0}
 Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	glib2-devel >= 1:2.44.0
 Requires:	gtk+3-devel >= 3.4.0
 Requires:	json-glib-devel >= 0.12.0
-%{?with_evdev:Requires:	libinput-devel >= 0.8.0}
+%{?with_evdev:Requires:	libinput-devel >= 0.19.0}
 Requires:	pango-devel >= 1:1.30
 %{?with_evdev:Requires:	udev-devel >= 1:136}
 %{?with_wayland:Requires: wayland-devel}
