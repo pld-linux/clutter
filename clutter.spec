@@ -34,10 +34,10 @@ BuildRequires:	gobject-introspection-devel >= 1.39.0
 BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
-%{?with_evdev:BuildRequires:	libevdev-devel}
 %{?with_evdev:BuildRequires:	libinput-devel >= 0.19.0}
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
+# mirclient
 %{?with_mir:BuildRequires:	mir-devel}
 BuildRequires:	pango-devel >= 1:1.30
 BuildRequires:	pkgconfig >= 1:0.16
@@ -52,7 +52,6 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXcomposite-devel >= 0.4
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXext-devel
-BuildRequires:	xorg-lib-libXfixes-devel >= 4
 BuildRequires:	xorg-lib-libXi-devel
 %if %{with evdev} || %{with wayland}
 BuildRequires:	xorg-lib-libxkbcommon-devel
@@ -116,7 +115,6 @@ Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXcomposite-devel >= 0.4
 Requires:	xorg-lib-libXdamage-devel
 Requires:	xorg-lib-libXext-devel
-Requires:	xorg-lib-libXfixes-devel >= 4
 %if %{with evdev} || %{with wayland}
 Requires:	xorg-lib-libxkbcommon-devel
 %endif
