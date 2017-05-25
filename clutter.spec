@@ -9,12 +9,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.26.0
+Version:	1.26.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	b065e9ca53d1f6bc1ec26aeb27338bb7
+# Source0-md5:	a03482cbacf735eca8c996f210a21ee5
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
