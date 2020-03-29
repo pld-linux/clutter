@@ -9,12 +9,12 @@
 Summary:	Library for rich GUIs
 Summary(pl.UTF-8):	Biblioteka do bogatych graficznych interfejsów użytkownika
 Name:		clutter
-Version:	1.26.2
+Version:	1.26.4
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/clutter/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	a03482cbacf735eca8c996f210a21ee5
+# Source0-md5:	624dd776a5159de0267587b1df6b97b2
 Patch0:		gtkdoc.patch
 Patch1:		missing.patch
 URL:		http://www.clutter-project.org/
@@ -29,9 +29,9 @@ BuildRequires:	cogl-devel >= 1.22.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.44.0
+BuildRequires:	glib2-devel >= 1:2.53.4
 BuildRequires:	gobject-introspection-devel >= 1.39.0
-BuildRequires:	gtk+3-devel >= 3.4.0
+BuildRequires:	gtk+3-devel >= 3.22.6
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	json-glib-devel >= 0.12.0
 %{?with_evdev:BuildRequires:	libinput-devel >= 0.19.0}
@@ -61,8 +61,8 @@ Requires:	atk >= 1:2.5.3
 Requires:	cairo-gobject >= 1.14.0
 Requires:	cogl >= 1.22.0
 %{?with_wayland:Requires:	cogl(wayland) >= 1.22.0}
-Requires:	glib2 >= 1:2.44.0
-Requires:	gtk+3 >= 3.4.0
+Requires:	glib2 >= 1:2.53.4
+Requires:	gtk+3 >= 3.22.6
 Requires:	json-glib >= 0.12.0
 %{?with_evdev:Requires:	libinput >= 0.19.0}
 Requires:	pango >= 1:1.30
@@ -104,8 +104,8 @@ Requires:	cairo-gobject-devel >= 1.14.0
 Requires:	cogl-devel >= 1.22.0
 %{?with_wayland:Requires:	cogl-devel(wayland) >= 1.22.0}
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.44.0
-Requires:	gtk+3-devel >= 3.4.0
+Requires:	glib2-devel >= 1:2.53.4
+Requires:	gtk+3-devel >= 3.22.6
 Requires:	json-glib-devel >= 0.12.0
 %{?with_evdev:Requires:	libinput-devel >= 0.19.0}
 Requires:	pango-devel >= 1:1.30
@@ -207,7 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f clutter-1.0.lang
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
+%doc ChangeLog NEWS README.md
 %attr(755,root,root) %{_libdir}/libclutter-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libclutter-1.0.so.0
 %attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.0
@@ -235,6 +235,9 @@ rm -rf $RPM_BUILD_ROOT
 %{?with_mir:%{_pkgconfigdir}/clutter-mir-1.0.pc}
 %{_pkgconfigdir}/clutter-wayland-1.0.pc
 %{_pkgconfigdir}/clutter-wayland-compositor-1.0.pc
+# valgrind support (TODO: better place?)
+%dir %{_datadir}/clutter-1.0
+%{_datadir}/clutter-1.0/valgrind
 
 %files static
 %defattr(644,root,root,755)
