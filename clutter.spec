@@ -162,7 +162,7 @@ Dokumentacja API clutter.
 %build
 %{__gtkdocize}
 %{__libtoolize}
-%{__aclocal} -I build/autotools
+%{__aclocal} -I build-aux/autotools
 %{__autoconf}
 %{__autoheader}
 %{__automake}
