@@ -206,9 +206,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f clutter-1.0.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README.md
-%attr(755,root,root) %{_libdir}/libclutter-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libclutter-1.0.so.0
-%attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so.0
+%{_libdir}/libclutter-1.0.so.*.*.*
+%ghost %{_libdir}/libclutter-1.0.so.0
+%{_libdir}/libclutter-glx-1.0.so.0
 %{_libdir}/girepository-1.0/Cally-1.0.typelib
 %{_libdir}/girepository-1.0/Clutter-1.0.typelib
 %{_libdir}/girepository-1.0/ClutterGdk-1.0.typelib
@@ -216,8 +216,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libclutter-1.0.so
-%attr(755,root,root) %{_libdir}/libclutter-glx-1.0.so
+%{_libdir}/libclutter-1.0.so
+%{_libdir}/libclutter-glx-1.0.so
 %{_includedir}/clutter-1.0
 %{_datadir}/gir-1.0/Cally-1.0.gir
 %{_datadir}/gir-1.0/Clutter-1.0.gir
